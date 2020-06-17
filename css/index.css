@@ -20,6 +20,7 @@ header h1 {
   vertical-align: middle;
 }
 header h2 {
+  color: gray;
   font-size: 2em;
   display: inline-block;
   vertical-align: middle;
@@ -44,7 +45,7 @@ section {
 }
 
 section h2 {
-  font-size: 3em;
+  font-size: 2em;
   display: block;
   padding-bottom: 0.5em;
   border-bottom: 1px solid #ccc;
