@@ -1,41 +1,3 @@
-let titulo = document.querySelector(".titulo");
-titulo.textContent = "Nutriform";
-
-let pacientes = document.querySelectorAll(".paciente");
-
-for (let i = 0; i < pacientes.length; i++) {
-  let paciente = pacientes[i];
-
-  let tdPeso = paciente.querySelector(".info-peso");
-  let peso = tdPeso.textContent;
-
-  let tdAltura = paciente.querySelector(".info-altura");
-  let altura = tdAltura.textContent;
-
-  let tdImc = paciente.querySelector(".info-imc");
-
-  let pesoValido = true;
-  let alturaValida = true;
-
-  if (peso <= 0 || peso >= 1000) {
-    console.log("peso inválido");
-    pesoValido = false;
-    tdImc.textContent = "Peso Inválido";
-    paciente.classList.add("campo-invalido");
-  }
-
-  if (altura <= 0 || altura >= 3) {
-    alturaValida = false;
-    tdImc.textContent = "Altura Inválida";
-    paciente.classList.add("campo-invalido");
-  }
-
-  if (alturaValida && pesoValido) {
-    let imc = peso / (altura * altura);
-    tdImc.textContent = imc.toFixed(2);
-  }
-}
-
 let botaoAdicionar = document.querySelector("#adicionar-paciente");
 
 botaoAdicionar.addEventListener("click", function (event) {
@@ -81,7 +43,4 @@ botaoAdicionar.addEventListener("click", function (event) {
 
   //insere a linha pacienteTr à tabela
   tabela.appendChild(pacienteTr);
-
-  console.log(pacienteTr);
-  console.log(nomeTd);
 });
