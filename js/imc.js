@@ -24,6 +24,7 @@ for (let i = 0; i < pacientes.length; i++) {
   let pesoValido = true;
   let alturaValida = true;
 
+  //se dados inválidos
   if (peso <= 0 || peso >= 1000) {
     console.log("peso inválido");
     pesoValido = false;
@@ -39,7 +40,14 @@ for (let i = 0; i < pacientes.length; i++) {
 
   //dados validados, calcula o imc
   if (alturaValida && pesoValido) {
-    let imc = peso / (altura * altura);
-    tdImc.textContent = imc.toFixed(2);
+    let imc = calculaImc(peso, altura);
+    tdImc.textContent = imc;
   }
+}
+
+function calculaImc(peso, altura) {
+  let imc = 0;
+  imc = peso / (altura * altura);
+
+  return imc.toFixed(2);
 }

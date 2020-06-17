@@ -8,39 +8,51 @@ botaoAdicionar.addEventListener("click", function (event) {
   //seleciona o formulário para captar os dados
   let form = document.querySelector("#form-adiciona");
 
-  //captura o valor digitado
-  let nome = form.nome.value; //recebe o valor do campo
-  let peso = form.peso.value;
-  let altura = form.altura.value;
-  let gordura = form.gordura.value;
-  //Dados capturados
+  //captura o valor digitado no form
+  let paciente = getPatient(form);
 
   //criar elementos no HTML com JS
   //linha
-  let pacienteTr = document.createElement("tr");
-
-  //colunas
-  let nomeTd = document.createElement("td");
-  let pesoTd = document.createElement("td");
-  let alturaTd = document.createElement("td");
-  let gorduraTd = document.createElement("td");
-  let imcTd = document.createElement("td");
-
-  //insere os dados às TDs
-  nomeTd.textContent = nome;
-  pesoTd.textContent = peso;
-  alturaTd.textContent = altura;
-  gorduraTd.textContent = gordura;
-
-  //insere dentro da linha "pacienteTr" os dados das colunas "?Td"
-  pacienteTr.appendChild(nomeTd);
-  pacienteTr.appendChild(pesoTd);
-  pacienteTr.appendChild(alturaTd);
-  pacienteTr.appendChild(gorduraTd);
+  let pacienteTr = makeTr(paciente);
 
   //seleciona #tabela-pacientes
   let tabela = document.querySelector("#tabela-pacientes");
 
   //insere a linha pacienteTr à tabela
   tabela.appendChild(pacienteTr);
+
+  form.reset();
 });
+
+function getPatient(form) {
+  let paciente = {
+    nome: form.nome.value,
+    peso: form.peso.value,
+    altura: form.altura.value,
+    gordura: form.gordura.value,
+    imc: calculaImc(form.gordura.value, form.altura.value),
+  };
+
+  return paciente;
+}
+
+function makeTr(paciente) {
+  let pacienteTr = document.createElement("tr");
+  pacienteTr.classList.add("paciente");
+
+  //insere dentro da linha "pacienteTr" os dados das colunas "?Td"
+  pacienteTr.appendChild(makeTd(paciente.nome, "info-nome"));
+  pacienteTr.appendChild(makeTd(paciente.peso, "info-peso"));
+  pacienteTr.appendChild(makeTd(paciente.altura, "info-atura"));
+  pacienteTr.appendChild(makeTd(paciente.gordura, "info-gordura"));
+  pacienteTr.appendChild(makeTd(paciente.imc, "info-imc"));
+
+  return pacienteTr;
+}
+
+function makeTd(dado, classe) {
+  let td = document.createElement("td"); //cria td
+  td.textContent = dado; //conteúdo td recebe um dado
+  td.classList.add(classe); //td recebe uma classe
+  return td;
+}
