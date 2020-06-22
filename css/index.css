@@ -141,3 +141,14 @@ button:disabled {
   opacity: 0;
   transition: 0.5s;
 }
+
+#filtrar-tabela {
+  width: 200px;
+  height: 35px;
+  margin-bottom: 15px;
+  margin-top: 5px;
+}
+
+.invisivel {
+  display: none;
+}
