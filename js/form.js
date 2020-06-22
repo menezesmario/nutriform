@@ -17,13 +17,7 @@ botaoAdicionar.addEventListener("click", function (event) {
     return;
   }
 
-  let pacienteTr = makeTr(paciente);
-
-  //seleciona #tabela-pacientes
-  let tabela = document.querySelector("#tabela-pacientes");
-
-  //insere a linha pacienteTr à tabela
-  tabela.appendChild(pacienteTr);
+  adicionaPacienteNaTabela(paciente);
 
   form.reset();
 
@@ -99,4 +93,10 @@ function exibeMensagensDeErro(erros) {
     li.textContent = erro;
     ul.appendChild(li);
   });
+}
+
+function adicionaPacienteNaTabela(paciente) {
+  let pacienteTr = makeTr(paciente);
+  let tabela = document.querySelector("#tabela-pacientes");
+  tabela.appendChild(pacienteTr);
 }
